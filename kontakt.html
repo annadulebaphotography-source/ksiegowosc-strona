@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Kontakt – Księgowość</title>
+
+<style>
+:root{
+--navy:#0b1f3a;
+--blue:#1f5eff;
+--ink:#0f172a;
+--muted:#475569;
+--border:rgba(15,23,42,.12);
+--shadow:0 10px 30px rgba(0,0,0,.08);
+
+/* TU WYMUSZAMY KANCIASY STYL */
+--radius:0px;
+}
+
+*{box-sizing:border-box}
+
+body{
+margin:0;
+font-family:system-ui,Segoe UI,Roboto,Arial;
+background:#f4f7ff;
+color:var(--ink);
+}
+
+.container{
+max-width:900px;
+margin:0 auto;
+padding:50px 20px;
+}
+
+h1{
+margin:0 0 20px;
+color:var(--navy);
+}
+
+.box{
+background:#fff;
+border:1px solid var(--border);
+border-radius:var(--radius);
+padding:26px;
+box-shadow:var(--shadow);
+margin-bottom:20px;
+}
+
+label{
+display:block;
+font-weight:600;
+margin:14px 0 6px;
+}
+
+input,textarea{
+width:100%;
+padding:12px;
+border-radius:var(--radius);
+border:1px solid var(--border);
+font:inherit;
+}
+
+button{
+margin-top:16px;
+padding:12px 20px;
+border-radius:var(--radius);
+border:0;
+background:linear-gradient(135deg,var(--navy),var(--blue));
+color:white;
+font-weight:600;
+cursor:pointer;
+}
+
+.small{
+color:var(--muted);
+font-size:14px;
+margin-top:10px;
+}
+
+.back{
+display:inline-block;
+margin-bottom:20px;
+color:var(--blue);
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<a class="back" href="index.html">← wróć na stronę główną</a>
+
+<h1>Kontakt</h1>
+
+<div class="box">
+<strong>Dane kontaktowe</strong><br><br>
+Twoje biuro księgowe<br>
+Karlsruhe & Umgebung<br>
+Tel: +49 …<br>
+Mail: kontakt@…
+</div>
+
+<div class="box">
+
+<form onsubmit="event.preventDefault();alert('Demo formularza');">
+
+<label>Imię</label>
+<input required>
+
+<label>Email</label>
+<input type="email" required>
+
+<label>Wiadomość</label>
+<textarea rows="5"></textarea>
+
+<button>Wyślij</button>
+
+<div class="small">
+Twoje dane są traktowane poufnie.
+</div>
+
+</form>
+
+</div>
+
+</div>
+
+</body>
+</html>
