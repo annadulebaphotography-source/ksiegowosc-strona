@@ -84,6 +84,15 @@ display:inline-block;
 margin-bottom:20px;
 color:var(--blue);
 }
+  /* FORCE: kwadratowy „księgowy” wygląd tylko na tej podstronie */
+*, *::before, *::after{
+  border-radius: 0 !important;
+}
+
+/* wyjątek: jeśli chcesz zostawić kropkę/ikonę okrągłą, usuń tę część
+.pillDot{ border-radius:999px !important; }
+*/
+
 </style>
 </head>
 
