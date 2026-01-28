@@ -1,181 +1,190 @@
 <!doctype html>
 <html lang="pl">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Kontakt – Księgowość</title>
+  <title>Kontakt – Księgowość</title>
+  <meta name="description" content="Kontakt – księgowość prowadzona dyskretnie i bezpiecznie. Napisz wiadomość, oddzwonię spokojnie i rzeczowo.">
 
-<style>
-:root{
---navy:#0b1f3a;
---blue:#1f5eff;
---ink:#0f172a;
---muted:#475569;
---border:rgba(15,23,42,.12);
---shadow:0 10px 30px rgba(0,0,0,.08);
+  <style>
+    :root{
+      --navy:#0b1f3a;
+      --blue:#1f5eff;
+      --ink:#0f172a;
+      --muted:#475569;
+      --border:rgba(15,23,42,.14);
+      --shadow:0 10px 30px rgba(0,0,0,.08);
 
-/* TU WYMUSZAMY KANCIASY STYL */
---radius:0px;
-}
+      /* kanciasty styl */
+      --radius:0px;
+    }
 
-*{box-sizing:border-box}
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
 
-body{
-margin:0;
-font-family:system-ui,Segoe UI,Roboto,Arial;
-background:#f4f7ff;
-color:var(--ink);
-}
+    body{
+      margin:0;
+      font-family:system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      background:#f4f7ff;
+      color:var(--ink);
+    }
 
-.container{
-max-width:900px;
-margin:0 auto;
-padding:50px 20px;
-}
+    .container{
+      max-width:900px;
+      margin:0 auto;
+      padding:50px 20px;
+    }
 
-h1{
-margin:0 0 20px;
-color:var(--navy);
-}
+    .back{
+      display:inline-block;
+      margin-bottom:18px;
+      color:var(--blue);
+      text-decoration:none;
+      font-weight:600;
+    }
+    .back:hover{ text-decoration:underline; }
 
-.box{
-background:#fff;
-border:1px solid var(--border);
-border-radius:var(--radius);
-padding:26px;
-box-shadow:var(--shadow);
-margin-bottom:20px;
-}
+    h1{
+      margin:0 0 18px;
+      color:var(--navy);
+      letter-spacing:-.3px;
+    }
 
-label{
-display:block;
-font-weight:600;
-margin:14px 0 6px;
-}
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:18px;
+      align-items:start;
+    }
+    @media (max-width: 860px){
+      .grid{ grid-template-columns:1fr; }
+    }
 
-input,textarea{
-width:100%;
-padding:12px;
-border-radius:var(--radius);
-border:1px solid var(--border);
-font:inherit;
-}
+    .box{
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      padding:24px;
+      box-shadow:var(--shadow);
+    }
 
-button{
-margin-top:16px;
-padding:12px 20px;
-border-radius:var(--radius);
-border:0;
-background:linear-gradient(135deg,var(--navy),var(--blue));
-color:white;
-font-weight:600;
-cursor:pointer;
-}
+    .boxTitle{
+      margin:0 0 10px;
+      color:var(--navy);
+      font-weight:800;
+      letter-spacing:.1px;
+    }
 
-.small{
-color:var(--muted);
-font-size:14px;
-margin-top:10px;
-}
+    .muted{
+      color:var(--muted);
+      line-height:1.65;
+      margin:0;
+    }
 
-.back{
-display:inline-block;
-margin-bottom:20px;
-color:var(--blue);
-}
-  /* FORCE: kwadratowy „księgowy” wygląd tylko na tej podstronie */
-*, *::before, *::after{
-  border-radius: 0 !important;
-}
+    label{
+      display:block;
+      font-weight:700;
+      margin:14px 0 6px;
+      color:var(--navy);
+      font-size:13px;
+      letter-spacing:.2px;
+      text-transform:uppercase;
+    }
 
-/* wyjątek: jeśli chcesz zostawić kropkę/ikonę okrągłą, usuń tę część
-.pillDot{ border-radius:999px !important; }
-*//* SYSTEMOWY / KANCIASNY WYGLĄD */
-.box, input, textarea, button{
-  border-radius: 0 !important;
-}
+    input, textarea{
+      width:100%;
+      padding:12px;
+      border-radius:var(--radius);
+      border:1px solid var(--border);
+      background:#fbfcff;
+      font:inherit;
+      outline:none;
+    }
 
-input, textarea{
-  background:#fbfcff;
-}
+    input:focus, textarea:focus{
+      border-color: rgba(31,94,255,.55);
+      box-shadow: 0 0 0 4px rgba(31,94,255,.12);
+    }
 
-.box{
-  border:1px solid rgba(0,0,0,.15);
-}
+    textarea{ min-height:140px; resize:vertical; }
 
-button{
-  letter-spacing:.4px;
-}
+    .actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:14px;
+    }
 
-h1{
-  letter-spacing:-.3px;
-}
+    button{
+      padding:12px 18px;
+      border-radius:var(--radius);
+      border:0;
+      background:linear-gradient(135deg,var(--navy),var(--blue));
+      color:#fff;
+      font-weight:800;
+      letter-spacing:.4px;
+      cursor:pointer;
+    }
+    button:hover{ filter:brightness(1.02); }
 
-</style>
+    .small{
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.55;
+      margin-top:12px;
+    }
+
+    /* twarde wymuszenie kanciastości – tylko tu */
+    .box, input, textarea, button{ border-radius:0 !important; }
+  </style>
 </head>
 
 <body>
+  <div class="container">
+    <a class="back" href="index.html">← wróć na stronę główną</a>
 
-<div class="container">
+    <h1>Kontakt</h1>
 
-<a class="back" href="index.html">← wróć na stronę główną</a>
+    <div class="grid">
+      <div class="box">
+        <h2 class="boxTitle">Dane kontaktowe</h2>
+        <p class="muted">
+          <strong style="color:var(--navy)">Twoje biuro księgowe</strong><br>
+          Karlsruhe &amp; Umgebung<br>
+          Tel: +49 …<br>
+          Mail: kontakt@…
+        </p>
 
-<h1>Kontakt</h1>
+        <p class="small">
+          Twoje dane są traktowane poufnie. Wiadomości służą wyłącznie do kontaktu w sprawie współpracy.
+        </p>
+      </div>
 
-<div class="box">
-<strong>Dane kontaktowe</strong><br><br>
-Twoje biuro księgowe<br>
-Karlsruhe & Umgebung<br>
-Tel: +49 …<br>
-Mail: kontakt@…
-</div>
+      <div class="box">
+        <h2 class="boxTitle">Napisz wiadomość</h2>
+        <p class="muted">Wystarczy minimum informacji. Resztę doprecyzujemy spokojnie.</p>
 
-<div class="box">
+        <form onsubmit="event.preventDefault(); alert('Demo formularza — w wersji finalnej podepniemy wysyłkę.');">
+          <label for="name">Imię</label>
+          <input id="name" name="name" autocomplete="name" required>
 
-<form onsubmit="event.preventDefault();alert('Demo formularza');">
+          <label for="email">E-mail</label>
+          <input id="email" name="email" type="email" autocomplete="email" required>
 
-<label>Imię</label>
-<input required>
+          <label for="msg">Wiadomość</label>
+          <textarea id="msg" name="msg" placeholder="Krótko: czego potrzebujesz? (np. KPiR, rozliczenia, konsultacja)"></textarea>
 
-<label>Email</label>
-<input type="email" required>
+          <div class="actions">
+            <button type="submit">Wyślij</button>
+          </div>
 
-<label>Wiadomość</label>
-<textarea rows="5"></textarea>
-
-<button>Wyślij</button>
-
-<div class="small">
-Twoje dane są traktowane poufnie.
-</div>
-
-</form>
-
-</div>
-
-</div>
-
+          <div class="small">
+            Demo: bez wysyłki. W wersji produkcyjnej dodaj politykę prywatności (RODO) i informacje o administratorze danych.
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
-/* SYSTEMOWY / KANCIASY WYGLĄD */
-.box, input, textarea, button{
-  border-radius: 0 !important;
-}
-
-input, textarea{
-  background:#fbfcff;
-}
-
-.box{
-  border:1px solid rgba(0,0,0,.15);
-}
-
-button{
-  letter-spacing:.4px;
-}
-
-h1{
-  letter-spacing:-.3px;
-}
-
