@@ -3,26 +3,467 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Księgowość – strona testowa</title>
-  <meta name="description" content="Prosta strona testowa na GitHub Pages." />
+  <title>Księgowość | Dyskrecja. Bezpieczeństwo. Porządek.</title>
+  <meta name="description" content="Nowoczesna księgowość z naciskiem na dyskrecję i bezpieczeństwo danych. Spokojna współpraca, jasne zasady, pełen porządek w dokumentach." />
+
+  <!-- Fonts (system font = szybkie i „bezpieczne” w odbiorze) -->
   <style>
-    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:#f6f2ea;color:#2f2a24}
-    .wrap{max-width:900px;margin:0 auto;padding:64px 20px}
-    .card{background:#fff;border-radius:16px;padding:28px;box-shadow:0 10px 30px rgba(0,0,0,.06)}
-    h1{margin:0 0 10px;font-size:34px}
-    p{margin:0 0 12px;line-height:1.6}
-    .badge{display:inline-block;background:#efe6d8;padding:6px 10px;border-radius:999px;font-size:13px}
-    a{color:inherit}
+    :root{
+      /* Trust palette */
+      --navy:#0b1f3a;        /* dyskretny granat */
+      --blue:#1f5eff;        /* zaufany, nowoczesny akcent */
+      --sky:#eaf2ff;         /* delikatne tło */
+      --ink:#0f172a;         /* tekst */
+      --muted:#475569;       /* opis */
+      --card:#ffffff;        /* karty */
+      --border:rgba(15,23,42,.10);
+      --shadow:0 18px 55px rgba(2, 12, 27, .12);
+      --shadowSoft:0 10px 28px rgba(2, 12, 27, .08);
+      --radius:18px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--ink);
+      background:
+        radial-gradient(900px 500px at 10% 5%, rgba(31,94,255,.10), transparent 60%),
+        radial-gradient(900px 500px at 90% 0%, rgba(11,31,58,.12), transparent 55%),
+        linear-gradient(180deg, #f6f9ff 0%, #ffffff 55%, #f6f9ff 100%);
+    }
+
+    a{color:inherit;text-decoration:none}
+    .container{max-width:1100px;margin:0 auto;padding:0 20px}
+    .nav{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(10px);
+      background: rgba(255,255,255,.75);
+      border-bottom: 1px solid var(--border);
+    }
+    .navInner{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 0;
+    }
+    .brand{
+      display:flex; gap:12px; align-items:center; font-weight:650;
+      letter-spacing:.2px;
+    }
+    .logo{
+      width:38px;height:38px;border-radius:12px;
+      background: linear-gradient(135deg, var(--navy), var(--blue));
+      box-shadow: 0 10px 22px rgba(31,94,255,.20);
+      display:grid;place-items:center;color:#fff;font-weight:800;
+    }
+    .navLinks{display:flex; gap:18px; align-items:center; color:var(--muted); font-weight:520}
+    .navLinks a{padding:8px 10px;border-radius:12px}
+    .navLinks a:hover{background: rgba(31,94,255,.08); color:var(--ink)}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:12px 16px;border-radius:14px;
+      font-weight:650;
+      border:1px solid rgba(31,94,255,.25);
+      background: rgba(31,94,255,.08);
+      color: var(--navy);
+      transition: transform .08s ease, background .15s ease, box-shadow .15s ease;
+    }
+    .btn:hover{background: rgba(31,94,255,.12); box-shadow: var(--shadowSoft)}
+    .btnPrimary{
+      background: linear-gradient(135deg, var(--navy), var(--blue));
+      color:#fff;border:0;
+      box-shadow: 0 16px 40px rgba(11,31,58,.22);
+    }
+    .btnPrimary:hover{transform: translateY(-1px)}
+    .hero{padding:64px 0 36px}
+    .heroGrid{
+      display:grid; gap:28px;
+      grid-template-columns: 1.1fr .9fr;
+      align-items:stretch;
+    }
+    @media (max-width: 900px){
+      .heroGrid{grid-template-columns:1fr}
+      .navLinks{display:none}
+    }
+
+    .heroCard{
+      background: rgba(255,255,255,.82);
+      border: 1px solid var(--border);
+      border-radius: calc(var(--radius) + 8px);
+      box-shadow: var(--shadow);
+      padding: 34px;
+      overflow:hidden;
+      position:relative;
+    }
+    .pill{
+      display:inline-flex;gap:10px;align-items:center;
+      padding:8px 12px;border-radius:999px;
+      background: rgba(31,94,255,.08);
+      border: 1px solid rgba(31,94,255,.18);
+      color: var(--navy);
+      font-weight:650;
+      font-size:13px;
+    }
+    .pillDot{
+      width:10px;height:10px;border-radius:999px;background: var(--blue);
+      box-shadow: 0 0 0 4px rgba(31,94,255,.14);
+    }
+    h1{
+      margin:14px 0 12px;
+      font-size: 44px;
+      line-height: 1.08;
+      letter-spacing: -0.6px;
+      color: var(--navy);
+    }
+    @media (max-width: 520px){ h1{font-size:36px} }
+
+    .lead{margin:0 0 18px; color: var(--muted); font-size:16.5px; line-height:1.7}
+    .heroActions{display:flex; gap:12px; flex-wrap:wrap; margin-top:18px}
+
+    .trust{
+      display:grid; gap:12px;
+      background: linear-gradient(180deg, rgba(234,242,255,.75), rgba(255,255,255,.85));
+      border: 1px solid var(--border);
+      border-radius: calc(var(--radius) + 8px);
+      padding: 26px;
+      box-shadow: var(--shadowSoft);
+    }
+    .trust h3{margin:0;font-size:16px;color:var(--navy)}
+    .trust p{margin:0;color:var(--muted);line-height:1.6}
+    .trustGrid{
+      display:grid; gap:12px;
+      grid-template-columns: 1fr;
+    }
+    .trustItem{
+      background: rgba(255,255,255,.7);
+      border:1px solid var(--border);
+      border-radius: 16px;
+      padding:14px 14px;
+      display:flex; gap:12px; align-items:flex-start;
+    }
+    .icon{
+      width:36px;height:36px;border-radius:14px;
+      background: rgba(31,94,255,.10);
+      border:1px solid rgba(31,94,255,.18);
+      display:grid;place-items:center;
+      color: var(--blue);
+      flex:0 0 auto;
+      font-weight:900;
+    }
+
+    section{padding:30px 0}
+    .sectionTitle{
+      margin:0 0 10px;font-size:24px;color:var(--navy);
+      letter-spacing:-.2px;
+    }
+    .sectionLead{margin:0 0 18px;color:var(--muted);line-height:1.7}
+
+    .cards{
+      display:grid; gap:14px;
+      grid-template-columns: repeat(3, 1fr);
+    }
+    @media (max-width: 900px){ .cards{grid-template-columns:1fr} }
+
+    .card{
+      background: rgba(255,255,255,.92);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px;
+      box-shadow: var(--shadowSoft);
+    }
+    .card h4{margin:0 0 6px;color:var(--navy)}
+    .card p{margin:0;color:var(--muted);line-height:1.65}
+
+    .process{
+      display:grid; gap:14px;
+      grid-template-columns: repeat(4, 1fr);
+    }
+    @media (max-width: 900px){ .process{grid-template-columns:1fr} }
+    .step{
+      background: rgba(255,255,255,.92);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px;
+    }
+    .stepNum{
+      width:34px;height:34px;border-radius:12px;
+      background: linear-gradient(135deg, var(--navy), var(--blue));
+      color:#fff;font-weight:800;display:grid;place-items:center;
+      box-shadow: 0 12px 26px rgba(11,31,58,.18);
+      margin-bottom:10px;
+    }
+    .quote{
+      background: linear-gradient(180deg, rgba(11,31,58,.92), rgba(31,94,255,.72));
+      color:#fff;
+      border-radius: calc(var(--radius) + 8px);
+      padding: 26px;
+      box-shadow: var(--shadow);
+      border:1px solid rgba(255,255,255,.18);
+    }
+    .quote p{margin:0;line-height:1.7}
+    .quote small{display:block;margin-top:10px;opacity:.9}
+
+    .contact{
+      display:grid; gap:14px;
+      grid-template-columns: 1fr 1fr;
+      align-items:stretch;
+    }
+    @media (max-width: 900px){ .contact{grid-template-columns:1fr} }
+
+    .form{
+      background: rgba(255,255,255,.92);
+      border:1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px;
+      box-shadow: var(--shadowSoft);
+    }
+    label{display:block;font-weight:650;color:var(--navy);font-size:13px;margin:12px 0 6px}
+    input, textarea{
+      width:100%;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid rgba(15,23,42,.14);
+      background:#fff;
+      font: inherit;
+      outline:none;
+    }
+    input:focus, textarea:focus{
+      border-color: rgba(31,94,255,.45);
+      box-shadow: 0 0 0 4px rgba(31,94,255,.12);
+    }
+    textarea{min-height:120px;resize:vertical}
+    .fineprint{margin-top:10px;color:rgba(71,85,105,.95);font-size:13px;line-height:1.55}
+    footer{
+      padding:26px 0 34px;
+      color: var(--muted);
+      font-size:13px;
+    }
+    .footerLine{
+      border-top: 1px solid var(--border);
+      padding-top: 16px;
+      display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;
+    }
+    .kbd{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      background: rgba(15,23,42,.06);
+      border:1px solid rgba(15,23,42,.10);
+      padding: 2px 8px;
+      border-radius:999px;
+    }
   </style>
 </head>
+
 <body>
-  <div class="wrap">
-    <div class="card">
-      <div class="badge">GitHub Pages • projekt treningowy</div>
-      <h1>Księgowość (demo)</h1>
-      <p>To jest moja testowa strona na GitHubie. Tu będę ćwiczyć layout, menu, SEO i formularze.</p>
-      <p><strong>Następny krok:</strong> dodaj <em>kontakt.html</em> i proste menu.</p>
+  <!-- NAV -->
+  <div class="nav">
+    <div class="container">
+      <div class="navInner">
+        <div class="brand">
+          <div class="logo">K</div>
+          <div>
+            <div style="font-size:14px;color:var(--navy)">Księgowość</div>
+            <div style="font-size:12px;color:var(--muted)">dyskrecja • bezpieczeństwo • porządek</div>
+          </div>
+        </div>
+
+        <div class="navLinks">
+          <a href="#uslugi">Usługi</a>
+          <a href="#bezpieczenstwo">Bezpieczeństwo</a>
+          <a href="#proces">Proces</a>
+          <a href="#kontakt">Kontakt</a>
+        </div>
+
+        <a class="btn btnPrimary" href="#kontakt">Poproś o kontakt</a>
+      </div>
     </div>
   </div>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="container">
+      <div class="heroGrid">
+        <div class="heroCard">
+          <div class="pill"><span class="pillDot"></span> Współpraca oparta na dyskrecji i spokoju</div>
+          <h1>Twoje liczby są prywatne. <br/>Ja dbam o porządek.</h1>
+          <p class="lead">
+            Księgowość prowadzona tak, żebyś miał/a poczucie bezpieczeństwa: jasne zasady, poufność,
+            spokojna komunikacja i pełna kontrola nad dokumentami.
+          </p>
+
+          <div class="heroActions">
+            <a class="btn btnPrimary" href="#kontakt">Umów krótką rozmowę</a>
+            <a class="btn" href="#bezpieczenstwo">Jak chronię dane?</a>
+          </div>
+
+          <p class="fineprint" style="margin-top:16px">
+            * To demo strony. W wersji finalnej dodasz dane firmy, politykę prywatności i stopkę (Impressum/Rodo).
+          </p>
+        </div>
+
+        <aside class="trust" id="bezpieczenstwo">
+          <h3>Bezpieczeństwo i dyskrecja — bez “marketingowego hałasu”</h3>
+          <p>Kolory, układ i komunikaty są tu celowo spokojne: mają uspokajać i budować zaufanie.</p>
+
+          <div class="trustGrid">
+            <div class="trustItem">
+              <div class="icon">🔒</div>
+              <div>
+                <strong style="color:var(--navy)">Poufność informacji</strong><br/>
+                <span style="color:var(--muted)">Dokumenty i dane traktowane jak w sejfie: minimum dostępu, maksimum porządku.</span>
+              </div>
+            </div>
+
+            <div class="trustItem">
+              <div class="icon">🧾</div>
+              <div>
+                <strong style="color:var(--navy)">Jasne zasady współpracy</strong><br/>
+                <span style="color:var(--muted)">Bez niedomówień: terminy, zakres, komunikacja — wszystko klarownie.</span>
+              </div>
+            </div>
+
+            <div class="trustItem">
+              <div class="icon">🕊️</div>
+              <div>
+                <strong style="color:var(--navy)">Dyskretna komunikacja</strong><br/>
+                <span style="color:var(--muted)">Spokojnie, rzeczowo, bez oceniania. To Twoja strefa komfortu.</span>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </header>
+
+  <!-- SERVICES -->
+  <section id="uslugi">
+    <div class="container">
+      <h2 class="sectionTitle">Usługi</h2>
+      <p class="sectionLead">Krótko i konkretnie. Klient ma od razu wiedzieć, że jesteś profesjonalna.</p>
+
+      <div class="cards">
+        <div class="card">
+          <h4>KPiR / ewidencje</h4>
+          <p>Prowadzenie bieżącej dokumentacji, porządek w kosztach i przychodach, kontrola terminów.</p>
+        </div>
+        <div class="card">
+          <h4>Faktury i rozliczenia</h4>
+          <p>Wsparcie w wystawianiu faktur, przygotowanie dokumentów i zestawień bez chaosu.</p>
+        </div>
+        <div class="card">
+          <h4>Konsultacje</h4>
+          <p>Spokojne omówienie sytuacji: co poprawić, jak uporządkować proces, co jest pilne.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section id="proces">
+    <div class="container">
+      <h2 class="sectionTitle">Jak wygląda współpraca</h2>
+      <p class="sectionLead">To daje klientowi poczucie kontroli i przewidywalności — a to jest “bezpieczeństwo” w praktyce.</p>
+
+      <div class="process">
+        <div class="step">
+          <div class="stepNum">1</div>
+          <strong style="color:var(--navy)">Krótka rozmowa</strong>
+          <p style="margin:8px 0 0;color:var(--muted);line-height:1.65">Ustalamy, czego potrzebujesz i jaki zakres ma sens.</p>
+        </div>
+        <div class="step">
+          <div class="stepNum">2</div>
+          <strong style="color:var(--navy)">Uporządkowanie dokumentów</strong>
+          <p style="margin:8px 0 0;color:var(--muted);line-height:1.65">Prosty system, żebyś nie gubił/a rzeczy po drodze.</p>
+        </div>
+        <div class="step">
+          <div class="stepNum">3</div>
+          <strong style="color:var(--navy)">Bieżące rozliczenia</strong>
+          <p style="margin:8px 0 0;color:var(--muted);line-height:1.65">Praca regularna, przewidywalna, bez nerwów.</p>
+        </div>
+        <div class="step">
+          <div class="stepNum">4</div>
+          <strong style="color:var(--navy)">Spokojna kontrola</strong>
+          <p style="margin:8px 0 0;color:var(--muted);line-height:1.65">Wiesz, gdzie jesteś finansowo — bez zaskoczeń.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUOTE -->
+  <section>
+    <div class="container">
+      <div class="quote">
+        <p><strong>Najważniejsze:</strong> klient ma poczuć, że jego finanse są traktowane z szacunkiem.
+          Nie “sprzedażowo”, tylko spokojnie, dyskretnie i profesjonalnie.</p>
+        <small>— komunikat, który buduje zaufanie w 2 sekundy</small>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="kontakt">
+    <div class="container">
+      <h2 class="sectionTitle">Kontakt</h2>
+      <p class="sectionLead">Daj klientowi prostą ścieżkę: minimum pytań, maksimum spokoju.</p>
+
+      <div class="contact">
+        <div class="card">
+          <h4 style="margin:0 0 10px">Dane kontaktowe</h4>
+          <p style="margin:0;color:var(--muted);line-height:1.7">
+            <strong style="color:var(--navy)">Imię i nazwisko / Nazwa biura</strong><br/>
+            Miasto + obsługiwany region<br/>
+            Telefon: <span class="kbd">+49 ...</span><br/>
+            E-mail: <span class="kbd">kontakt@...</span>
+          </p>
+
+          <div style="margin-top:14px">
+            <div class="trustItem" style="margin:0">
+              <div class="icon">🛡️</div>
+              <div>
+                <strong style="color:var(--navy)">Twoje dane są traktowane poufnie</strong><br/>
+                <span style="color:var(--muted)">Wiadomości służą tylko do kontaktu w sprawie współpracy.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <form class="form" onsubmit="event.preventDefault(); alert('Demo formularza — w wersji finalnej podepniemy wysyłkę.');">
+          <h4 style="margin:0 0 6px;color:var(--navy)">Napisz spokojnie — odpowiem rzeczowo</h4>
+          <p style="margin:0 0 12px;color:var(--muted);line-height:1.65">Wystarczy minimum informacji. Resztę doprecyzujemy.</p>
+
+          <label for="name">Imię</label>
+          <input id="name" name="name" autocomplete="name" placeholder="np. Anna" required />
+
+          <label for="email">E-mail</label>
+          <input id="email" name="email" type="email" autocomplete="email" placeholder="np. anna@firma.de" required />
+
+          <label for="msg">Wiadomość</label>
+          <textarea id="msg" name="msg" placeholder="Krótko: czego potrzebujesz? (np. KPiR, rozliczenia, konsultacja)"></textarea>
+
+          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px">
+            <button class="btn btnPrimary" type="submit">Wyślij wiadomość</button>
+            <a class="btn" href="#uslugi">Zobacz usługi</a>
+          </div>
+
+          <div class="fineprint">
+            <strong>Ważne:</strong> to jest wersja demo. W realnej stronie dodaj: politykę prywatności (RODO),
+            informacje o administratorze danych oraz stopkę (Impressum, jeśli to rynek DE).
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footerLine">
+        <div>© <span id="y"></span> Księgowość — strona testowa</div>
+        <div>Impressum • Polityka prywatności • RODO</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
